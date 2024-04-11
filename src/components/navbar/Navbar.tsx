@@ -2,8 +2,8 @@ import Links from "./link/Links";
 
 export default function Navbar() {
     return (
-        <div>
-            <div>Logo</div>
+        <div className="h-24 flex items-center justify-between">
+            <div className="text-lg font-bold">Logo</div>
             <Links />
         </div>
     );
