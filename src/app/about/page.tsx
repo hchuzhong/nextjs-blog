@@ -27,7 +27,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      <div className="flex-1 relative">
+      <div className="hidden md:block flex-1 relative">
         <Image src="/about.png" alt="" fill className="object-contain" />
       </div>
     </div>

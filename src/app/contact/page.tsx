@@ -4,12 +4,9 @@ export default function ContactPage() {
   const inputStyling = "p-5 rounded border-none outline-none bg-[var(--bgSoft)] text-[var(--text)]";
   return (
     <div className="flex gap-24">
-      <div className="relative flex-1">
+      <div className="hidden md:block relative flex-1">
         <Image src="/contact.png" alt="" fill className="object-contain" />
       </div>
-      {/* <div className="flex-1 relative">
-        <Image src="/about.png" alt="" fill className="object-contain" />
-      </div> */}
       <div className="flex-1">
         <form action="" className="flex flex-col gap-5">
           <input className={inputStyling} type="text" placeholder="Name and Surname" name="name" />
