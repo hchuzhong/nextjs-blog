@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import NavLink from "./navLink/navLink";
+import Image from "next/image";
 
 const linksConfig: {href: string; label: string}[] = [
     {
@@ -27,7 +28,7 @@ export default function Links() {
     const session = true;
     const isAdmin = true;
     return (
-        <div>
+        <div className="flex items-center justify-around">
             <div className="hidden md:block">
                 {linksConfig.map(link => (
                     <NavLink item={link} key={link.label} />
@@ -41,7 +42,9 @@ export default function Links() {
                     <NavLink item={{href: "/login", label: "Login"}} />
                 )}
             </div>
-            <button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>Menu</button>
+            <button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>
+                <Image src="/menu.png" alt="" width={24} height={24} />
+            </button>
             {open && (
                 <div className="md:hidden absolute top-24 right-0 w-6/12 h-[calc(100vh-96px)] flex flex-col items-center justify-center gap-2 overflow-hidden bg-[var(--bg)]">
                     {linksConfig.map(link => (

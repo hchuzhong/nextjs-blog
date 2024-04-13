@@ -19,7 +19,7 @@ export default function RootLayout({
   const widthStyling = "w-[475px] sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1536px]";
   return (
     <html lang="en">
-      <body className={`${inter.className} ${widthStyling} h-screen m-auto px-8 flex justify-between flex-col`}>
+      <body className={`${inter.className} ${widthStyling} h-screen m-auto px-2 flex justify-between flex-col`}>
         <Navbar />
         {children}
         <Footer />
