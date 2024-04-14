@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "About Page",
+  description: "About Page",
+};
 
 export default function AboutPage() {
   return (

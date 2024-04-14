@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Contact Page",
+  description: "Contact Page",
+};
 
 export default function ContactPage() {
   const inputStyling = "p-5 rounded border-none outline-none bg-[var(--bgSoft)] text-[var(--text)]";

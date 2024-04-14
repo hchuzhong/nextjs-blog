@@ -1,7 +1,16 @@
 import { getPost, getUser } from "@/lib/data";
 import Image from "next/image";
 
-export default async function BlogChildPage({params}) {
+export const generateMetadata = async ({params}: {params: any}) => {
+  const { slug } = params;
+  const post = await getPost(slug);
+  return {
+    title: post.title,
+    description: post.desc,
+  }
+}
+
+export default async function BlogChildPage({params}: {params: any}) {
   const { slug } = params;
   const post = await getPost(slug);
   const user = await getUser(post.userId);
