@@ -1,13 +1,11 @@
 import PostCard from "@/components/postCard/postCard";
+import { getPosts } from "@/lib/data";
 
-export default function BlogPage() {
-  const postCardStyleing = "w-full md:w-[45%] xl:w-[30%] "
+export default async function BlogPage() {
+  const posts = await getPosts();
   return (
     <div className="flex flex-wrap justify-between">
-      <div className={postCardStyleing}><PostCard /></div>
-      <div className={postCardStyleing}><PostCard /></div>
-      <div className={postCardStyleing}><PostCard /></div>
-      <div className={postCardStyleing}><PostCard /></div>
+      {posts.map(post => <div className="w-full md:w-[45%] xl:w-[30%]" key={post.id}><PostCard post={post} /></div>)}
     </div>
   );
 }
