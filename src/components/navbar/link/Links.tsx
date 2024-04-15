@@ -25,8 +25,6 @@ const linksConfig: {href: string; label: string}[] = [
 ]
 export default function Links({session}: {session: any}) {
     const [open, setOpen] = useState(false);
-    // TODO
-    const isAdmin = true;
     return (
         <div className="flex items-center justify-around">
             <div className="hidden md:flex">

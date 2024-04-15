@@ -9,11 +9,11 @@ import { useFormState } from "react-dom";
 export default function LoginForm() {
     const [state, formAction] = useFormState(login, undefined);
     const router = useRouter();
-    // useEffect(() => {
-    //     if (state?.success) {
-    //         router.push("/");
-    //     }
-    // }, [state, router]);
+    useEffect(() => {
+        if (state?.success) {
+            router.replace("/");
+        }
+    }, [state, router]);
     return (
         <form action={formAction} className="flex flex-col gap-5">
             <input className="form-input-tailwind" type="text" placeholder="username" name="username" />
