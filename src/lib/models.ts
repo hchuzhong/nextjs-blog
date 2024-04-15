@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true, min: 3, max: 20 },
-    email: { type: String, required: true, unique: true, max: 50 },
-    password: { type: String, required: true, min: 6},
+    email: { type: String, required: false, unique: true, max: 50 },
+    password: { type: String, required: false, min: 6},
     img: { type: String },
     isAdmin: { type: Boolean, default: false },
-}, {timestamps: true});
+}, {timestamps: true, strict: false});
 
 const postSchema = new mongoose.Schema({
     title: { type: String, required: true },

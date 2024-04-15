@@ -21,3 +21,11 @@ body {
 a {
   @apply text-inherit no-underline;
 }
+
+.form-input-tailwind {
+  @apply p-5 rounded border-none outline-none bg-[var(--bg)] text-[var(--text)];
+}
+
+.form-button-tailwind {
+  @apply p-4 bg-[var(--btn)] text-[var(--text)] font-bold border-none rounded
+}

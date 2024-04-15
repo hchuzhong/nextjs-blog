@@ -3,6 +3,7 @@
 import { useState } from "react";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
+import { handleGithubLogout } from "@/lib/action";
 
 const linksConfig: {href: string; label: string}[] = [
     {
@@ -22,21 +23,22 @@ const linksConfig: {href: string; label: string}[] = [
         label: "Blog"
     }
 ]
-export default function Links() {
+export default function Links({session}: {session: any}) {
     const [open, setOpen] = useState(false);
     // TODO
-    const session = true;
     const isAdmin = true;
     return (
         <div className="flex items-center justify-around">
-            <div className="hidden md:block">
+            <div className="hidden md:flex">
                 {linksConfig.map(link => (
                     <NavLink item={link} key={link.label} />
                 ))}
-                {session ? (
+                {session?.user ? (
                     <>
-                        { isAdmin && (<NavLink item={{href: "/admin", label: "Admin"}} />) }
-                        <button className="p-2 cursor-pointer font-bold bg-[--text] text-[--bg] rounded">Logout</button>
+                        { session?.user?.isAdmin && (<NavLink item={{href: "/admin", label: "Admin"}} />) }
+                        <form action={handleGithubLogout}>
+                            <button className="p-2 cursor-pointer font-bold bg-[--text] text-[--bg] rounded">Logout</button>
+                        </form>
                     </>
                 ) : (
                     <NavLink item={{href: "/login", label: "Login"}} />
