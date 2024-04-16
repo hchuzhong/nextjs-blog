@@ -22,10 +22,22 @@ a {
   @apply text-inherit no-underline;
 }
 
+h3 {
+  @apply text-2xl mb-2;
+}
+
 .form-input-tailwind {
   @apply p-5 rounded border-none outline-none bg-[var(--bg)] text-[var(--text)];
 }
 
+.form-input-admin-tailwind {
+  @apply p-5 rounded border-none outline-none bg-[var(--bgSoft)] text-[var(--text)];
+}
+
 .form-button-tailwind {
-  @apply p-4 bg-[var(--btn)] text-[var(--text)] font-bold border-none rounded
+  @apply p-4 bg-[var(--btn)] text-[var(--text)] font-bold border-none rounded;
+}
+
+.form-wrapper-tailwind {
+  @apply w-[500px] p-12 bg-[var(--bgSoft)] flex flex-col text-center gap-6 rounded;
 }
