@@ -11,16 +11,12 @@ const linksConfig: {href: string; label: string}[] = [
         label: "Home"
     },
     {
-        href: "/about",
-        label: "About"
-    },
-    {
-        href: "/contact",
-        label: "Contact"
-    },
-    {
         href: "/blog",
         label: "Blog"
+    },
+    {
+        href: "/about",
+        label: "About"
     }
 ]
 export default function Links({session}: {session: any}) {
