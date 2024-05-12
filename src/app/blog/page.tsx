@@ -19,31 +19,31 @@ const getData = async () => {
 }
 
 export default async function BlogPage() {
-  // const posts = await getPosts();
-  const displayPosts = await getRecentPosts();
+  const posts = await getPosts();
   const pagination = {
     currentPage: 1,
-    totalPages: Math.ceil(displayPosts.length / 5),
+    totalPages: Math.ceil(posts.length / 5),
   }
   
   return (
     <div>
       <ul>
-        {displayPosts.map((post) => {
-          const { path, date, title, summary } = post
+        {posts.map((post) => {
+          const { slug, createdAt, title, desc } = post
+          const summary = desc.length > 100 ? desc.slice(0, 100) + "..." : desc;
           return (
-            <li key={path} className="py-5">
+            <li key={slug} className="py-5">
               <article className="flex flex-col space-y-2 xl:space-y-0">
                 <dl>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{date.slice(0, 10)}</time>
+                    <time>{createdAt.toString().slice(0, 16)}</time>
                   </dd>
                 </dl>
                 <div className="space-y-3">
                   <div>
                     <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                      <Link href={`/${path}`} className="text-gray-100 dark:text-gray-400">
+                      <Link href={`/${slug}`} className="text-gray-100 dark:text-gray-400">
                         {title}
                       </Link>
                     </h2>
