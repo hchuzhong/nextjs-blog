@@ -20,7 +20,7 @@ const getData = async (slug: number) => {
 
 export default async function BlogChildPage({params}: {params: any}) {
     const { slug } = params;
-    const post = await getPost('Test-Markdown');
+    const post = await getPost('react mardown blog');
     const user = await getUser('661bb7145c2c3ad553939c51');
 
     const detailTexStyling = "flex flex-col gap-1";
@@ -46,9 +46,8 @@ export default async function BlogChildPage({params}: {params: any}) {
                         <span className={detailValueStyling}>{post.createdAt.toString().slice(0, 16)}</span>
                     </div>
                 </div>
-                {/* <div className="text-xl">{post.desc}</div> */}
                 <div className="prose prose-invert">
-                        <ReactMarkdown>{post.desc}</ReactMarkdown>
+                    <ReactMarkdown>{post.desc}</ReactMarkdown>
                 </div>
             </div>
         </div>

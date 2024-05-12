@@ -6,8 +6,8 @@ import { Post, User } from "./models";
 import { signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
 
-export const addPost = async (previousState, formData) => {
-    const {title, desc, slug, userId} = Object.fromEntries(formData);
+export const addPost = async (formData) => {
+    const {title, desc, slug, userId} = formData;
     try {
         connectToDb();
         const newPost = new Post({title, desc, slug, userId});
