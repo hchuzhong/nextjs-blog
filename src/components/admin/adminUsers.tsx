@@ -11,7 +11,8 @@ export default async function AdminUsers() {
                 <div key={user.id} className="w-full flex h-16 my-2 items-center justify-between gap-2">
                     <div className="flex items-center gap-5">
                         <div className="relative w-12 h-12">
-                            <Image className="object-cover rounded-full" src={user.img ?? '/noavatar.png'} alt="" fill />
+                            {/* wired bug, you can only use `user.img ? user.img : '/noavatar.png'` instead of `user.img ?? '/noavatar.png` */}
+                            <Image className="object-cover rounded-full" src={user.img ? user.img : '/noavatar.png'} alt="" fill />
                         </div>
                         <span>{user.username}</span>
                     </div>
