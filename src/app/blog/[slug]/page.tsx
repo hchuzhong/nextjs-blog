@@ -1,16 +1,15 @@
-import MarkdownEditor from "@/components/markdownEditor/markdownEditor";
 import { getPost, getUser } from "@/lib/data";
 import Image from "next/image";
 import ReactMarkdown from 'react-markdown';
 
-// export const generateMetadata = async ({params}: {params: any}) => {
-//         const { slug } = params;
-//         const post = await getPost(slug);
-//         return {
-//                 title: post.title,
-//                 description: post.desc,
-//         }
-// }
+export const generateMetadata = async ({params}: {params: any}) => {
+        const { slug } = params;
+        const post = await getPost(slug);
+        return {
+                title: post.title,
+                description: post.desc,
+        }
+}
 
 const getData = async (slug: number) => {
         const res = await fetch(`http://localhost:3000/api/blog/${slug}`);

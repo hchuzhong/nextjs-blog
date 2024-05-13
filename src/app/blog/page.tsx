@@ -1,9 +1,9 @@
 import PostCard from "@/components/postCard/postCard";
-import { getPosts, getRecentPosts } from "@/lib/data";
+import { getPosts } from "@/lib/data";
 import { Metadata } from "next";
 import Link from '@/components/link/link';
-import { usePathname } from "next/navigation";
 import Pagination from "@/components/pagination/pagination";
+import { MAX_DISPLAY } from '@/lib/global';
 
 export const metadata: Metadata = {
   title: "Blog Page",
@@ -11,25 +11,33 @@ export const metadata: Metadata = {
 };
 
 
-
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/blog");
+const getData = async (searchParams: { [key: string]: string | string[] | undefined }) => {
+  let params = '';
+  for (const param in searchParams) {
+    if (searchParams[param] !== undefined) {
+      params += `${param}=${searchParams[param]}&`;
+    }
+  }
+  const res = await fetch(`http://localhost:3000/api/blog?${params}`);
   if (!res.ok) throw new Error("Network response was not ok");
   return res.json();
 }
 
-export default async function BlogPage() {
-  const posts = await getPosts();
-  const pagination = {
-    currentPage: 1,
-    totalPages: Math.ceil(posts.length / 5),
-  }
-  
+export default async function BlogPage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const response = await getData(searchParams);
+  const {posts, totalPages, page} = response;
+
   return (
-    <div>
-      <ul>
+    <div className="flex-1 flex flex-col">
+      <ul className="flex-1">
         {posts.map((post) => {
-          const { slug, createdAt, title, desc } = post
+          const { slug, createdAt, title, desc } = post;
           const summary = desc.length > 100 ? desc.slice(0, 100) + "..." : desc;
           return (
             <li key={slug} className="py-5">
@@ -57,8 +65,8 @@ export default async function BlogPage() {
           )
         })}
       </ul>
-      {pagination && pagination.totalPages > 1 && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+      {totalPages > 1 && (
+        <Pagination currentPage={page} totalPages={totalPages} />
       )}
     </div>
   );

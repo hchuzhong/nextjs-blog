@@ -1,16 +1,29 @@
 "use client";
 
 import Link from '@/components/link/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 interface PaginationProps {
-    totalPages: number
-    currentPage: number
+    totalPages: number;
+    currentPage: number;
 }
 export default function Pagination({ totalPages, currentPage }: PaginationProps) {
     const pathname = usePathname()
     const basePath = pathname.split('/')[1]
     const prevPage = currentPage - 1 > 0
     const nextPage = currentPage + 1 <= totalPages
+
+    const searchParams = useSearchParams();
+
+    const createPageURL = (pageNumber: number | string) => {
+        if (typeof pageNumber === 'string') {
+            pageNumber = parseInt(pageNumber);
+        }
+        if (pageNumber <= 1) pageNumber = 1;
+        if (pageNumber >= totalPages) pageNumber = totalPages;
+        const params = new URLSearchParams(searchParams);
+        params.set('page', pageNumber.toString());
+        return `${pathname}?${params.toString()}`;
+    };
 
     return (
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
@@ -22,7 +35,7 @@ export default function Pagination({ totalPages, currentPage }: PaginationProps)
                 )}
                 {prevPage && (
                     <Link
-                        href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
+                        href={createPageURL(currentPage - 1 )}
                         rel="prev"
                     >
                         Previous
@@ -37,7 +50,7 @@ export default function Pagination({ totalPages, currentPage }: PaginationProps)
                     </button>
                 )}
                 {nextPage && (
-                    <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
+                    <Link href={createPageURL(currentPage + 1)} rel="next">
                         Next
                     </Link>
                 )}

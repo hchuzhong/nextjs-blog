@@ -1,7 +1,6 @@
 import Link from '@/components/link/link';
 import { getPosts } from '@/lib/data';
-
-const MAX_DISPLAY = 5
+import { MAX_DISPLAY } from '@/lib/global';
 
 export default async function Home() {
   const posts = await getPosts();
