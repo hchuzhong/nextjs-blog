@@ -51,7 +51,7 @@ export default async function BlogPage({
                 <div className="space-y-3">
                   <div>
                     <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                      <Link href={`/${slug}`} className="text-gray-100 dark:text-gray-400">
+                      <Link href={`/blog/${slug}`} className="text-gray-100 dark:text-gray-400">
                         {title}
                       </Link>
                     </h2>
