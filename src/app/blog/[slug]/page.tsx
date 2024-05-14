@@ -12,9 +12,9 @@ export const generateMetadata = async ({params}: {params: any}) => {
 }
 
 const getData = async (slug: number) => {
-        const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
+    const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+    if (!res.ok) throw new Error("Network response was not ok");
+    return res.json();
 }
 
 export default async function BlogChildPage({params}: {params: any}) {
