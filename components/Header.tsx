@@ -187,6 +187,7 @@ const Header: React.FC = () => {
 
           button {
             border: none;
+            
           }
         `}</style>
       </div>
